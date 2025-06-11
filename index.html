@@ -24,35 +24,58 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
-                  <img src="img/logo-satu-misi.png" alt="Logo Satu Misi" class=" inset-0 w-full h-full object-contain rounded-full" />
-                </div>
-
-
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-800">Satu Misi</h1>
-                        <p class="text-xs text-gray-600">Peduli Generasi Negeri</p>
-                    </div>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#beranda" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Beranda</a>
-                    <a href="#tentang" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Tentang</a>
-                    <a href="#program" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Program</a>
-                    <a href="#bergabung" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Bergabung</a>
-                </div>
-                <button class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+   <!-- Navigation -->
+<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo dan Judul -->
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
+          <img src="img/logo-satu-misi.png" alt="Logo Satu Misi" class="inset-0 w-full h-full object-contain rounded-full" />
         </div>
-    </nav>
+        <div>
+          <h1 class="text-xl font-bold text-gray-800">Satu Misi</h1>
+          <p class="text-xs text-gray-600">Peduli Generasi Negeri</p>
+        </div>
+      </div>
+
+      <!-- Menu Desktop -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#beranda" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Beranda</a>
+        <a href="#tentang" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Tentang</a>
+        <a href="#program" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Program</a>
+        <a href="#bergabung" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Bergabung</a>
+      </div>
+
+      <!-- Hamburger Button -->
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-3 pb-4">
+      <a href="#beranda" class="block text-gray-700 hover:text-gray-900 font-medium">Beranda</a>
+      <a href="#tentang" class="block text-gray-700 hover:text-gray-900 font-medium">Tentang</a>
+      <a href="#program" class="block text-gray-700 hover:text-gray-900 font-medium">Program</a>
+      <a href="#bergabung" class="block text-gray-700 hover:text-gray-900 font-medium">Bergabung</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Toggle Script -->
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
 
     <!-- Hero Section -->
     <section id="beranda" class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden">
