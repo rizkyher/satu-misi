@@ -41,27 +41,27 @@
 
       <!-- Menu Desktop -->
       <div class="hidden md:flex space-x-8">
-        <a href="#beranda" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Beranda</a>
-        <a href="#tentang" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Tentang</a>
-        <a href="#program" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Program</a>
-        <a href="#bergabung" class="text-gray-700 hover:text-gray-900 font-medium transition-colors">Bergabung</a>
+        <a href="#beranda" class="text-gray-700 hover:text-blue-600 transition font-medium">Beranda</a>
+        <a href="#tentang" class="text-gray-700 hover:text-blue-600 transition font-medium">Tentang</a>
+        <a href="#program" class="text-gray-700 hover:text-blue-600 transition font-medium">Program</a>
+        <a href="#bergabung" class="text-gray-700 hover:text-blue-600 transition font-medium">Bergabung</a>
       </div>
 
       <!-- Hamburger Button -->
-      <button id="menu-toggle" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" class="md:hidden focus:outline-none">
+        <svg id="menu-icon" class="w-6 h-6 text-gray-700 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
+            d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-3 pb-4">
-      <a href="#beranda" class="block text-gray-700 hover:text-gray-900 font-medium">Beranda</a>
-      <a href="#tentang" class="block text-gray-700 hover:text-gray-900 font-medium">Tentang</a>
-      <a href="#program" class="block text-gray-700 hover:text-gray-900 font-medium">Program</a>
-      <a href="#bergabung" class="block text-gray-700 hover:text-gray-900 font-medium">Bergabung</a>
+    <div id="mobile-menu" class="md:hidden hidden flex-col space-y-3 pb-4 pt-2 transition-all duration-300">
+      <a href="#beranda" class="block text-gray-700 hover:text-blue-600 font-medium px-2 py-1">Beranda</a>
+      <a href="#tentang" class="block text-gray-700 hover:text-blue-600 font-medium px-2 py-1">Tentang</a>
+      <a href="#program" class="block text-gray-700 hover:text-blue-600 font-medium px-2 py-1">Program</a>
+      <a href="#bergabung" class="block text-gray-700 hover:text-blue-600 font-medium px-2 py-1">Bergabung</a>
     </div>
   </div>
 </nav>
@@ -70,9 +70,29 @@
 <script>
   const toggleBtn = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+
+  let menuOpen = false;
 
   toggleBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
     mobileMenu.classList.toggle('hidden');
+    toggleBtn.setAttribute('aria-expanded', menuOpen);
+
+    // Toggle icon to X or Hamburger
+    menuIcon.innerHTML = menuOpen
+      ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />'
+      : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!toggleBtn.contains(e.target) && !mobileMenu.contains(e.target) && menuOpen) {
+      mobileMenu.classList.add('hidden');
+      menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+      toggleBtn.setAttribute('aria-expanded', false);
+      menuOpen = false;
+    }
   });
 </script>
 
